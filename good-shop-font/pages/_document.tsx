@@ -10,9 +10,6 @@ export default function CustomDocument(props: DocumentProps) {
     <Html lang='zh-cmn-Hans'>
       <Head>
         <link rel='icon' href='/favicon.ico' />
-        <link rel='stylesheet' href='//static-card.dushu365.com/static/components/dplayer@v1.25.0/dplayer.min.css' />
-        <script defer src='//static-card.dushu365.com/static/components/hls@v0.12.4/hls.min.js'></script>
-        <script defer src='//static-card.dushu365.com/static/components/dplayer@v1.25.0/dplayer.min.js'></script>
         <CSSReset />
       </Head>
       <body>

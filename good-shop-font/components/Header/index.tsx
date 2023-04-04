@@ -19,7 +19,7 @@ import { getViewPort } from '@/utils';
 import { rootFontSize } from '@/utils/resize';
 import * as lock from '@/utils/lock';
 
-import { HeaderProps, SensorProps } from './Header.types';
+import { HeaderProps } from './Header.types';
 
 const Container = styled(Box)({
   position: 'fixed',
@@ -27,6 +27,6 @@ const Container = styled(Box)({
   zIndex: 100000,
 });
 
-export function Header({ pageName }: HeaderProps & SensorProps) {
+export function Header({ pageName }: HeaderProps) {
   return <Container>{pageName}</Container>;
 }

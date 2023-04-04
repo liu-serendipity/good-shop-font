@@ -5,8 +5,5 @@ export interface HeaderProps extends HTMLChakraProps<'div'> {
   mode?: 'dark' | 'light';
   showHead?: boolean;
   sticky?: boolean;
-}
-
-export type SensorProps = {
   pageName?: string;
-};
+}

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
 
-import { PageHead } from '@/components';
+import { PageHead, Header } from '@/components';
 import { getViewPort } from '@/utils';
 
 import * as data from './data';
@@ -46,6 +46,7 @@ export function View() {
   return (
     <>
       <PageHead title={data.page.title} description={data.page.description} keywords={data.page.keywords} />
+      <Header pageName={data.page.name} />
     </>
   );
 }

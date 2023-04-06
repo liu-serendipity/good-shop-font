@@ -1,12 +1,13 @@
-import React from "react";
-import "./App.css";
+import React, { Suspense } from 'react';
+import './App.css';
 
-import Login from "./views/login";
+import routes from '@/routes';
+import { RouterGurad } from '@/routes/routerGuard';
 
 function App() {
   return (
-    <div className="App">
-      <Login />
+    <div className='App'>
+      <Suspense>{RouterGurad(routes)}</Suspense>
     </div>
   );
 }

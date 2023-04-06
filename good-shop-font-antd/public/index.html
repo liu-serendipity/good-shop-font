@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -40,4 +37,21 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script>
+    const baseSize = 200;
+    // 设置 rem 函数
+    function setRem() {
+      // 当前页面宽度相对于 750 宽的缩放比例，可根据自己需要修改。
+      let width = document.documentElement.clientWidth;
+      const scale = (width > 750 ? 750 : width) / 750;
+      // 设置页面根节点字体大小
+      document.documentElement.style.fontSize = baseSize * Math.min(scale, 2) + 'px';
+    }
+    // 初始化
+    setRem();
+    // 改变窗口大小时重新设置 rem
+    window.onresize = function () {
+      setRem();
+    };
+  </script>
 </html>

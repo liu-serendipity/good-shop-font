@@ -31,16 +31,16 @@ function guard(location: Location, navigate: NavigateFunction, routes: RouteObje
 
   //没有找到路由，跳转404
   if (!routedetail) {
-    // navigate("/404");
+    navigate('/404');
     return false;
   }
 
   //如果需要权限验证
   if (routedetail.auth) {
-    const token = localStorage.getItem('token');
+    const token = window.localStorage.getItem('token');
 
     if (!token) {
-      Toast.show('请登录');
+      Toast.show('请先登录');
       navigate('/login');
       return false;
     }

@@ -25,7 +25,7 @@ interface Props {
 }
 
 export const Box = styled.div((props: Props) => ({
-  position: props.pos || 'static',
+  position: props.pos,
   width: props.w || 'fit-content',
   height: props.h,
   zIndex: props.zIndex,
@@ -35,14 +35,14 @@ export const Box = styled.div((props: Props) => ({
   bottom: props.b,
   left: props.l,
   right: props.r,
-  padding: props.p || 0,
-  paddingTop: props.pt || 0,
-  paddingLeft: props.pl || 0,
-  paddingRight: props.pr || 0,
-  paddingBottom: props.pb || 0,
-  margin: props.m || 0,
-  marginTop: props.mt || 0,
-  marginLeft: props.ml || 0,
-  marginRight: props.mr || 0,
-  marginBottom: props.mb || 0,
+  padding: props.p,
+  paddingTop: props.pt,
+  paddingLeft: props.pl,
+  paddingRight: props.pr,
+  paddingBottom: props.pb,
+  margin: props.m,
+  marginTop: props.mt,
+  marginLeft: props.ml,
+  marginRight: props.mr,
+  marginBottom: props.mb,
 }));

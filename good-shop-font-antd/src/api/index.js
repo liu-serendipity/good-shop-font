@@ -1,4 +1,4 @@
-import { getAxios, postAxios } from '@/utils/axios';
+import axios, { getAxios, postAxios } from '@/utils/axios';
 
 // 登陆
 export function login(params) {
@@ -13,4 +13,9 @@ export function register(params) {
 // 获取用户信息
 export function getUserInfo() {
   return getAxios('/user/info');
+}
+
+// 编辑用户信息
+export function editUserInfo(params) {
+  return axios.put('/user/info', params);
 }

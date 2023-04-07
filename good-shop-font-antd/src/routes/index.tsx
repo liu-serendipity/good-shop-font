@@ -7,6 +7,10 @@ const Login = lazy(() => import('@/views/login'));
 const About = lazy(() => import('@/views/about'));
 const Cart = lazy(() => import('@/views/cart'));
 const Shop = lazy(() => import('@/views/shop'));
+const Order = lazy(() => import('@/views/order'));
+const Setting = lazy(() => import('@/views/setting'));
+const Address = lazy(() => import('@/views/address'));
+const Us = lazy(() => import('@/views/us'));
 const Client404 = lazy(() => import('@/views/client404'));
 
 export interface RouteObject {
@@ -47,6 +51,26 @@ const routes: RouteObject[] = [
   {
     path: '/about',
     element: <About />,
+    auth: true,
+  },
+  {
+    path: '/about/order',
+    element: <Order />,
+    auth: true,
+  },
+  {
+    path: '/about/setting',
+    element: <Setting />,
+    auth: true,
+  },
+  {
+    path: '/about/address',
+    element: <Address />,
+    auth: true,
+  },
+  {
+    path: '/about/us',
+    element: <Us />,
     auth: true,
   },
   {

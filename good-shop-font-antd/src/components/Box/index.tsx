@@ -22,6 +22,9 @@ interface Props {
   ml?: any;
   mr?: any;
   mb?: any;
+  bg?: any;
+  boxShadow?: any;
+  br?: any;
 }
 
 export const Box = styled.div((props: Props) => ({
@@ -45,4 +48,7 @@ export const Box = styled.div((props: Props) => ({
   marginLeft: props.ml,
   marginRight: props.mr,
   marginBottom: props.mb,
+  background: props.bg,
+  boxShadow: props.boxShadow,
+  borderRadius: props.br,
 }));

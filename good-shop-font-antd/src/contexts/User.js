@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { getUserInfo } from '@/api';
+import { getUserInfo, editUserInfo } from '@/api';
 
 export const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
@@ -7,6 +7,12 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserInfo = async () => {
     await getUserInfo().then((res) => {
+      setUserInfo(res);
+    });
+  };
+
+  const fetchEditUserInfo = async (params = {}) => {
+    await editUserInfo(params).then((res) => {
       setUserInfo(res);
     });
   };
@@ -19,6 +25,7 @@ export const UserProvider = ({ children }) => {
     return {
       userInfo,
       fetchUserInfo,
+      fetchEditUserInfo,
     };
   }, [userInfo]);
 

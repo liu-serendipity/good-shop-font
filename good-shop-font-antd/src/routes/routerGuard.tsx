@@ -25,6 +25,11 @@ export function searchroutedetail(path: string, routes: RouteObject[]): RouteObj
 //全局路由守卫
 function guard(location: Location, navigate: NavigateFunction, routes: RouteObject[]) {
   const { pathname } = location;
+  const token = window.localStorage.getItem('token');
+
+  if (token && pathname === '/login') {
+    window.location.href = '/v/';
+  }
 
   //找到对应的路由信息
   const routedetail = searchroutedetail(pathname, routes);
@@ -36,19 +41,15 @@ function guard(location: Location, navigate: NavigateFunction, routes: RouteObje
   }
 
   //如果需要权限验证
-  if (routedetail.auth) {
-    const token = window.localStorage.getItem('token');
 
+  if (routedetail.auth) {
     if (!token) {
       Toast.show('请先登录');
       navigate('/login');
       return false;
-    } else {
-      if (pathname === '/login') {
-        navigate('/home');
-      }
     }
   }
+
   return true;
 }
 

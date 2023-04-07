@@ -27,7 +27,7 @@ const routes: RouteObject[] = [
   {
     path: '/login',
     element: <Login />,
-    auth: true,
+    auth: false,
   },
   {
     path: '/home',

@@ -1,9 +1,16 @@
 import { getAxios, postAxios } from '@/utils/axios';
 
+// 登陆
 export function login(params) {
   return postAxios('/user/login', params);
 }
 
+// 注册
 export function register(params) {
   return postAxios('/user/register', params);
+}
+
+// 获取用户信息
+export function getUserInfo() {
+  return getAxios('/user/info');
 }

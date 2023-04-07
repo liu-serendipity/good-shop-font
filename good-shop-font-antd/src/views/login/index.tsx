@@ -9,7 +9,6 @@ import { sleep } from '@/utils';
 
 import signed_logo from './imgs/signed_logo.png';
 import footer from './imgs/footer.gif';
-import { getFileInfo } from 'prettier';
 
 const Container = styled.div`
   width: 100%;
@@ -62,21 +61,24 @@ const Login = () => {
 
     handleLoading();
     if (type === 'login') {
-      const res = await login({ loginName: value.username, passwordMd5: md5(value.password) });
-      // @ts-ignore
-      window.localStorage.setItem('token', res);
+      await login({ loginName: value.username, passwordMd5: md5(value.password) }).then((res) => {
+        // @ts-ignore
+        window.localStorage.setItem('token', res);
+        return Promise.resolve();
+      });
+
       loadingRef.current?.close();
       Toast.show('登陆成功！');
       await sleep(800);
-      window.location.href = '/v/home';
-      return Promise.resolve();
+      window.location.href = '/v/';
+      return;
     } else {
       await register({ loginName: value.username, password: value.password });
       loadingRef.current?.close();
       Toast.show('注册成功！');
       await sleep(800);
       window.location.href = '/v/';
-      return Promise.resolve();
+      return;
     }
   };
 

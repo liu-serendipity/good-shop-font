@@ -27,8 +27,6 @@ function guard(location: Location, navigate: NavigateFunction, routes: RouteObje
   const { pathname } = location;
   const token = window.localStorage.getItem('token');
 
-  console.log(pathname, '===');
-
   if (token && pathname === '/login') {
     window.location.href = '/v/';
   }

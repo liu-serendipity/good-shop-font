@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { getUserInfo, editUserInfo } from '@/api';
+import { getUserInfo, editUserInfo, logout } from '@/api';
 
 export const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
@@ -13,7 +13,18 @@ export const UserProvider = ({ children }) => {
 
   const fetchEditUserInfo = async (params = {}) => {
     await editUserInfo(params).then((res) => {
-      setUserInfo(res);
+      if (res.resultCode === 200) {
+        getUserInfo().then((data) => {
+          setUserInfo(data);
+          return Promise.resolve({ ...res, data });
+        });
+      }
+    });
+  };
+
+  const fetchLogout = async () => {
+    await logout().then((res) => {
+      return Promise.resolve(res);
     });
   };
 
@@ -26,8 +37,9 @@ export const UserProvider = ({ children }) => {
       userInfo,
       fetchUserInfo,
       fetchEditUserInfo,
+      fetchLogout,
     };
-  }, [userInfo]);
+  }, [userInfo, fetchUserInfo, fetchEditUserInfo, fetchLogout]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

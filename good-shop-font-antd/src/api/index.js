@@ -19,3 +19,8 @@ export function getUserInfo() {
 export function editUserInfo(params) {
   return axios.put('/user/info', params);
 }
+
+// 退出登陆
+export function logout() {
+  return postAxios('/user/logout');
+}

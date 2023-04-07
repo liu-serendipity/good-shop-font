@@ -5,7 +5,7 @@ import { Center, Box, ImageVerify, Flex } from '@/components';
 import { login, register } from '@/api';
 // @ts-ignore
 import md5 from 'js-md5';
-import { sleep } from '@/utils';
+import { sleep, handleIsEmpty } from '@/utils';
 
 import signed_logo from './imgs/signed_logo.png';
 import footer from './imgs/footer.gif';
@@ -35,14 +35,6 @@ const Login = () => {
 
   const handleLoading = () => {
     loadingRef.current = Toast.show({ content: '加载中...', duration: 0 });
-  };
-
-  const handleIsEmpty = (val: any, fix: string) => {
-    if (!val) {
-      Toast.show(`${fix}不能为空！`);
-      return false;
-    }
-    return true;
   };
 
   const onFinish = async (value: any) => {

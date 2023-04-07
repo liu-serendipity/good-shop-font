@@ -9,6 +9,7 @@ import { sleep } from '@/utils';
 
 import signed_logo from './imgs/signed_logo.png';
 import footer from './imgs/footer.gif';
+import { getFileInfo } from 'prettier';
 
 const Container = styled.div`
   width: 100%;
@@ -37,11 +38,28 @@ const Login = () => {
     loadingRef.current = Toast.show({ content: '加载中...', duration: 0 });
   };
 
+  const handleIsEmpty = (val: any, fix: string) => {
+    if (!val) {
+      Toast.show(`${fix}不能为空！`);
+      return false;
+    }
+    return true;
+  };
+
   const onFinish = async (value: any) => {
-    if (value.verificationCode.toLowerCase() !== imageCode.toLowerCase()) {
-      Toast.show('验证码错误！');
+    const { username, password, verificationCode } = value;
+
+    if (
+      !handleIsEmpty(username, '用户名') ||
+      !handleIsEmpty(password, '密码') ||
+      !handleIsEmpty(verificationCode, '验证码')
+    )
+      return null;
+    if (verificationCode.toLowerCase() !== imageCode.toLowerCase()) {
+      Toast.show('验证码有误！');
       return null;
     }
+
     handleLoading();
     if (type === 'login') {
       const res = await login({ loginName: value.username, passwordMd5: md5(value.password) });
@@ -51,14 +69,14 @@ const Login = () => {
       Toast.show('登陆成功！');
       await sleep(800);
       window.location.href = '/v/home';
-      return null;
+      return Promise.resolve();
     } else {
       await register({ loginName: value.username, password: value.password });
       loadingRef.current?.close();
       Toast.show('注册成功！');
       await sleep(800);
       window.location.href = '/v/';
-      return null;
+      return Promise.resolve();
     }
   };
 
@@ -104,13 +122,13 @@ const Login = () => {
               </Flex>
             }
           >
-            <Form.Item label='用户名' name='username' rules={[{ required: true, message: '用户名不能为空' }]}>
+            <Form.Item label='用户名' name='username'>
               <Input placeholder='请输入用户名' clearable type='number' />
             </Form.Item>
-            <Form.Item label='密码' name='password' rules={[{ required: true, message: '密码不能为空' }]}>
+            <Form.Item label='密码' name='password'>
               <Input placeholder='请输入密码' clearable type='password' />
             </Form.Item>
-            <Form.Item name='verificationCode' rules={[{ required: true, message: '验证码不能为空' }]}>
+            <Form.Item name='verificationCode'>
               <Flex>
                 <Input placeholder='请输入验证码' clearable type='text' />
                 <ImageVerify onSubmit={(val) => setImageCode(val)} />

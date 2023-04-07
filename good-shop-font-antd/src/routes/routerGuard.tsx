@@ -43,6 +43,10 @@ function guard(location: Location, navigate: NavigateFunction, routes: RouteObje
       Toast.show('请先登录');
       navigate('/login');
       return false;
+    } else {
+      if (pathname === '/login') {
+        navigate('/home');
+      }
     }
   }
   return true;
@@ -54,7 +58,7 @@ export const RouterGurad = (routes: RouteObject[]) => {
 
   useEffect(() => {
     guard(location, navigate, routes);
-  }, [location, navigate, routes]);
+  }, []);
 
   const Route = useRoutes(routes);
 

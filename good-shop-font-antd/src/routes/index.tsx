@@ -21,11 +21,13 @@ export interface RouteObject {
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to='/login' replace={true} />,
+    element: <Navigate to='/home' replace={true} />,
+    auth: true,
   },
   {
     path: '/login',
     element: <Login />,
+    auth: true,
   },
   {
     path: '/home',

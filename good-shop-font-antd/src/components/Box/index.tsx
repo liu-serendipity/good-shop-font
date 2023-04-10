@@ -25,6 +25,7 @@ interface Props {
   bg?: any;
   boxShadow?: any;
   br?: any;
+  border?: any;
 }
 
 export const Box = styled.div((props: Props) => ({
@@ -51,4 +52,5 @@ export const Box = styled.div((props: Props) => ({
   background: props.bg,
   boxShadow: props.boxShadow,
   borderRadius: props.br,
+  border: props.border,
 }));

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
-import { useRef } from 'react';
 
 axios.defaults.withCredentials = true;
 

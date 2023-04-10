@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from '@/contexts/User';
+import { AddressProvider } from '@/contexts/Address';
 
 const basename = window.location.pathname.split('/v/')[0] + '/v/';
 
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <BrowserRouter basename={basename}>
-        <App />
-      </BrowserRouter>
+      <AddressProvider>
+        <BrowserRouter basename={basename}>
+          <App />
+        </BrowserRouter>
+      </AddressProvider>
     </UserProvider>
   </React.StrictMode>,
 );

@@ -13,6 +13,8 @@ const Address = lazy(() => import('@/views/address'));
 const Us = lazy(() => import('@/views/us'));
 const Client404 = lazy(() => import('@/views/client404'));
 
+const AddressDetail = lazy(() => import('@/views/address/pages/addressDetail'));
+
 export interface RouteObject {
   caseSensitive?: boolean;
   children?: RouteObject[];
@@ -54,24 +56,31 @@ const routes: RouteObject[] = [
     auth: true,
   },
   {
-    path: '/about/order',
+    path: '/order',
     element: <Order />,
     auth: true,
   },
   {
-    path: '/about/setting',
+    path: '/setting',
     element: <Setting />,
     auth: true,
   },
   {
-    path: '/about/address',
-    element: <Address />,
+    path: '/us',
+    element: <Us />,
     auth: true,
   },
   {
-    path: '/about/us',
-    element: <Us />,
+    path: '/address',
+    element: <Address />,
     auth: true,
+    children: [
+      {
+        path: '/address/detail',
+        element: <AddressDetail />,
+        auth: true,
+      },
+    ],
   },
   {
     path: '/404',

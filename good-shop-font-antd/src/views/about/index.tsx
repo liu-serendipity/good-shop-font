@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavBar, Avatar, List } from 'antd-mobile';
+import { NavBar, Avatar, List, Toast } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
+import { sleep } from '@/utils';
 import {
   MoreOutline,
   ShopbagOutline,
@@ -16,6 +17,12 @@ import main from './imgs/main.jpg';
 const About = () => {
   const navigate = useNavigate();
   const { userInfo } = useUserContext();
+
+  const jump = async (val: any) => {
+    Toast.show('加载中');
+    await sleep(800);
+    navigate(val);
+  };
 
   return (
     <div className='about'>
@@ -48,16 +55,16 @@ const About = () => {
       </Box>
       <Box w='100%' mt='0.4rem'>
         <List>
-          <List.Item prefix={<ShopbagOutline />} onClick={() => navigate('/about/order')}>
+          <List.Item prefix={<ShopbagOutline />} onClick={() => jump('/order')}>
             我的订单
           </List.Item>
-          <List.Item prefix={<UserContactOutline />} onClick={() => navigate('/about/setting')}>
+          <List.Item prefix={<UserContactOutline />} onClick={() => jump('/setting')}>
             账号管理
           </List.Item>
-          <List.Item prefix={<LocationOutline />} onClick={() => navigate('/about/address')}>
+          <List.Item prefix={<LocationOutline />} onClick={() => jump('/address')}>
             地址管理
           </List.Item>
-          <List.Item prefix={<ExclamationCircleOutline />} onClick={() => navigate('/about/us')}>
+          <List.Item prefix={<ExclamationCircleOutline />} onClick={() => jump('/us')}>
             关于我们
           </List.Item>
         </List>

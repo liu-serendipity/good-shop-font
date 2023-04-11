@@ -20,6 +20,9 @@ interface Props {
   br?: any;
   align?: any;
   justify?: any;
+  pos?: any;
+  b?: any;
+  flexDir?: any;
 }
 
 export const Flex = styled.div((props: Props) => ({
@@ -42,4 +45,7 @@ export const Flex = styled.div((props: Props) => ({
   borderRadius: props.br,
   alignItems: props.align,
   justifyContent: props.justify,
+  position: props.pos,
+  bottom: props.b,
+  flexDirection: props.flexDir,
 }));

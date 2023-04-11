@@ -3,3 +3,4 @@ export { Center } from './Center';
 export { Box } from './Box';
 export { ImageVerify } from './ImageVerify';
 export { Text } from './Text';
+export { Footer } from './Footer';

@@ -82,12 +82,12 @@ const AddressDetail = () => {
   const onFinish = async (val: any) => {
     const { userName, userPhone, detailAddress } = val;
     const params = {
-      userName: userName || addressDetail.userName,
-      userPhone: userPhone || addressDetail.userPhone,
-      provinceName: addressDetail.provinceName || location[0],
-      cityName: addressDetail.cityName || location[1],
-      regionName: addressDetail.regionName || location[2],
-      detailAddress: detailAddress || addressDetail.detailAddress,
+      userName: userName ? userName : addressDetail.userName || undefined,
+      userPhone: userPhone ? userPhone : addressDetail.userPhone || undefined,
+      provinceName: location[0] ? location[0] : addressDetail.provinceName || undefined,
+      cityName: location[1] ? location[1] : addressDetail.cityName || undefined,
+      regionName: location[2] ? location[2] : addressDetail.regionName || undefined,
+      detailAddress: detailAddress ? detailAddress : addressDetail.detailAddress || undefined,
       defaultFlag: switchStatus ? 1 : 0,
     };
     if (type === 'edit') {
@@ -150,9 +150,11 @@ const AddressDetail = () => {
               <Input
                 placeholder={
                   type === 'edit'
-                    ? `${addressDetail.provinceName || ''} ${addressDetail.cityName || ''} ${
-                        addressDetail.regionName || ''
-                      }`
+                    ? location.length > 0
+                      ? `${location.join(' ')}`
+                      : `${addressDetail.provinceName || ''} ${addressDetail.cityName || ''} ${
+                          addressDetail.regionName || ''
+                        }`
                     : location.length > 0
                     ? `${location.join(' ')}`
                     : '点击选择地区'

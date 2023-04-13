@@ -13,6 +13,7 @@ const Address = lazy(() => import('@/views/address'));
 const GoodsDetail = lazy(() => import('@/views/goodsDetail'));
 const Us = lazy(() => import('@/views/us'));
 const Client404 = lazy(() => import('@/views/client404'));
+const Pay = lazy(() => import('@/views/pay'));
 
 const AddressDetail = lazy(() => import('@/views/address/pages/addressDetail'));
 
@@ -74,6 +75,11 @@ const routes: RouteObject[] = [
   {
     path: '/goodsDetail',
     element: <GoodsDetail />,
+    auth: true,
+  },
+  {
+    path: '/pay',
+    element: <Pay />,
     auth: true,
   },
   {

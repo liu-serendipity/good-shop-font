@@ -24,3 +24,8 @@ export function addAddress(params) {
 export function deleteAddress(id) {
   return axios.delete(`/address/${id}`);
 }
+
+// 默认地址
+export function getDefaultAddress() {
+  return getAxios('/address/default');
+}

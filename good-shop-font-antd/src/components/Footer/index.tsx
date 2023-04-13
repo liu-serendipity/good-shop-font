@@ -6,7 +6,7 @@ import { IconIndex, IconMall, IconCart, IconAbout } from '@/assets/icon';
 
 export const Footer = () => {
   return (
-    <Flex bg='#fff' pos={'fixed'} w='100%' zIndex={109} b='0' justify={'space-around'}>
+    <Flex bg='#fff' pos={'fixed'} w='100%' zIndex={109} b='0' justify={'space-around'} borderTop={'1px solid #ebedf0'}>
       <NavLink to='/home'>
         {({ isActive }) => (
           <Flex w='0.6rem' flexDir={'column'} align={'center'} p='0.04rem 0.1rem'>

@@ -37,7 +37,7 @@ const GoodsDetail = () => {
     fetchAddCart({ goodsCount: 1, goodsId: goodsId });
     fetchCart();
     await sleep(800);
-    navigate('/cart');
+    navigate({ pathname: '/cart' });
   };
 
   return (

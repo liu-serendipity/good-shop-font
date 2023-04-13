@@ -1,5 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { getAddressList, editAddress, getAddressDetail, addAddress, deleteAddress } from '@/api/address';
+import {
+  getAddressList,
+  editAddress,
+  getAddressDetail,
+  addAddress,
+  deleteAddress,
+  getDefaultAddress,
+} from '@/api/address';
 
 export const AddressContext = React.createContext();
 export const AddressProvider = ({ children }) => {
@@ -14,9 +21,7 @@ export const AddressProvider = ({ children }) => {
   };
 
   const fetchEditUserAddress = async (params = {}) => {
-    await editAddress(params).then((res) => {
-      console.log(res, '====EditAddress');
-    });
+    await editAddress(params);
   };
 
   const fetchUserAddressDetail = async (id) => {
@@ -26,15 +31,15 @@ export const AddressProvider = ({ children }) => {
   };
 
   const fetchAddAddress = async (params = {}) => {
-    await addAddress(params).then((res) => {
-      console.log(res, 'add');
-    });
+    await addAddress(params);
   };
 
   const fetchDeleteAddress = async (id) => {
-    await deleteAddress(id).then((res) => {
-      console.log(res, 'delete');
-    });
+    await deleteAddress(id);
+  };
+
+  const fetchDefaultAddress = async () => {
+    await getDefaultAddress();
   };
 
   const value = useMemo(() => {
@@ -46,6 +51,7 @@ export const AddressProvider = ({ children }) => {
       fetchUserAddressDetail,
       fetchAddAddress,
       fetchDeleteAddress,
+      fetchDefaultAddress,
     };
   }, [
     addressList,
@@ -55,6 +61,7 @@ export const AddressProvider = ({ children }) => {
     fetchUserAddressDetail,
     fetchAddAddress,
     fetchDeleteAddress,
+    fetchDefaultAddress,
   ]);
 
   return <AddressContext.Provider value={value}>{children}</AddressContext.Provider>;

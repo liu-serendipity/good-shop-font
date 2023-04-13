@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
+import qs from 'qs';
 
 axios.defaults.withCredentials = true;
 
@@ -9,6 +10,7 @@ axios.defaults.baseURL =
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.headers['token'] = localStorage.getItem('token') || '';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 // 拦截器
 axios.interceptors.response.use((res) => {
@@ -40,6 +42,9 @@ export function getAxios(url: string, params = {}) {
     axios
       .get(url, {
         params,
+        paramsSerializer: (params) => {
+          return decodeURIComponent(qs.stringify(params, { arrayFormat: 'comma' }));
+        },
       })
       .then((res) => {
         resolve(res.data);

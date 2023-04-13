@@ -15,6 +15,14 @@ interface Props {
   ml?: any;
   mr?: any;
   mb?: any;
+  bg?: any;
+  br?: any;
+  pos?: any;
+  c?: any;
+  t?: any;
+  b?: any;
+  l?: any;
+  r?: any;
 }
 
 export const Center = styled.div((props: Props) => ({
@@ -34,4 +42,12 @@ export const Center = styled.div((props: Props) => ({
   marginLeft: props.ml,
   marginRight: props.mr,
   marginBottom: props.mb,
+  background: props.bg,
+  borderRadius: props.br,
+  position: props.pos,
+  color: props.c,
+  top: props.t,
+  bottom: props.b,
+  left: props.l,
+  right: props.r,
 }));

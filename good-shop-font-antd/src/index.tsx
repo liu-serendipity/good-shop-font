@@ -7,19 +7,28 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from '@/contexts/User';
 import { AddressProvider } from '@/contexts/Address';
+import { HomeProvider } from '@/contexts/Home';
+import { GoodsProvider } from '@/contexts/Goods';
+import { CartProvider } from '@/contexts/Cart';
 
 const basename = window.location.pathname.split('/v/')[0] + '/v/';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <AddressProvider>
-        <BrowserRouter basename={basename}>
-          <App />
-        </BrowserRouter>
-      </AddressProvider>
-    </UserProvider>
+    <HomeProvider>
+      <UserProvider>
+        <AddressProvider>
+          <GoodsProvider>
+            <CartProvider>
+              <BrowserRouter basename={basename}>
+                <App />
+              </BrowserRouter>
+            </CartProvider>
+          </GoodsProvider>
+        </AddressProvider>
+      </UserProvider>
+    </HomeProvider>
   </React.StrictMode>,
 );
 

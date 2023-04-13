@@ -23,6 +23,8 @@ interface Props {
   pos?: any;
   b?: any;
   flexDir?: any;
+  flexWrap?: any;
+  borderTop?: any;
 }
 
 export const Flex = styled.div((props: Props) => ({
@@ -48,4 +50,6 @@ export const Flex = styled.div((props: Props) => ({
   position: props.pos,
   bottom: props.b,
   flexDirection: props.flexDir,
+  flexWrap: props.flexWrap,
+  borderTop: props.borderTop,
 }));

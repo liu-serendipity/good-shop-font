@@ -26,6 +26,12 @@ interface Props {
   boxShadow?: any;
   br?: any;
   border?: any;
+  borderLeft?: any;
+  borderBottom?: any;
+  borderBottomLeftRadius?: any;
+  borderTopLeftRadius?: any;
+  borderTopRightRadius?: any;
+  borderBottomRightRadius?: any;
 }
 
 export const Box = styled.div((props: Props) => ({
@@ -53,4 +59,10 @@ export const Box = styled.div((props: Props) => ({
   boxShadow: props.boxShadow,
   borderRadius: props.br,
   border: props.border,
+  borderLeft: props.borderLeft,
+  borderBottom: props.borderBottom,
+  borderBottomLeftRadius: props.borderBottomLeftRadius,
+  borderTopLeftRadius: props.borderTopLeftRadius,
+  borderTopRightRadius: props.borderTopRightRadius,
+  borderBottomRightRadius: props.borderBottomRightRadius,
 }));

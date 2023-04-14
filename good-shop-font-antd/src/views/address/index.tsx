@@ -23,7 +23,7 @@ const Address = () => {
   return (
     <div className='adress'>
       <Box pos={'fixed'} w='100%'>
-        <NavBar onBack={() => navigate('/about')}>地址管理</NavBar>
+        <NavBar onBack={() => navigate(-1)}>地址管理</NavBar>
       </Box>
       <Box pt='0.45rem' w='100%'>
         <List header='地址列表'>

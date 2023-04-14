@@ -12,6 +12,7 @@ export const AddressContext = React.createContext();
 export const AddressProvider = ({ children }) => {
   const [addressList, setAddressList] = useState([]);
   const [addressDetail, setAddressDetail] = useState({});
+  const [defaultAddress, setDefaultAddress] = useState({});
 
   const fetchUserAddress = async () => {
     const params = { pageNumber: 1, pageSize: 1000 };
@@ -39,13 +40,16 @@ export const AddressProvider = ({ children }) => {
   };
 
   const fetchDefaultAddress = async () => {
-    await getDefaultAddress();
+    await getDefaultAddress().then((res) => {
+      setDefaultAddress(res);
+    });
   };
 
   const value = useMemo(() => {
     return {
       addressList,
       addressDetail,
+      defaultAddress,
       fetchUserAddress,
       fetchEditUserAddress,
       fetchUserAddressDetail,
@@ -56,6 +60,7 @@ export const AddressProvider = ({ children }) => {
   }, [
     addressList,
     addressDetail,
+    defaultAddress,
     fetchUserAddress,
     fetchEditUserAddress,
     fetchUserAddressDetail,

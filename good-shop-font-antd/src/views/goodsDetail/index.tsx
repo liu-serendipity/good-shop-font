@@ -18,7 +18,6 @@ const GoodsDetail = () => {
   const [swiperIndex, setSwiperIndex] = useState(0);
 
   useEffect(() => {
-    fetchCart();
     fetchGoodsDetail(goodsId);
   }, []);
 
@@ -115,11 +114,6 @@ const GoodsDetail = () => {
             pos='relative'
           >
             <ShopbagOutline fontSize={'0.2rem'} />
-            <Center bg='red' br='50%' pos='absolute' w='0.12rem' h='0.12rem' r='0.2rem'>
-              <Text fz='0.1rem' c='#fff'>
-                {cartList?.length}
-              </Text>
-            </Center>
             <Text>购物车</Text>
           </Flex>
         </Flex>

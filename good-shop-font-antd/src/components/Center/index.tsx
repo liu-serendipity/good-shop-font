@@ -23,6 +23,7 @@ interface Props {
   b?: any;
   l?: any;
   r?: any;
+  flexDir?: any;
 }
 
 export const Center = styled.div((props: Props) => ({
@@ -50,4 +51,5 @@ export const Center = styled.div((props: Props) => ({
   bottom: props.b,
   left: props.l,
   right: props.r,
+  flexDirection: props.flexDir,
 }));

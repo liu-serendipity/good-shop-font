@@ -10,6 +10,7 @@ import { AddressProvider } from '@/contexts/Address';
 import { HomeProvider } from '@/contexts/Home';
 import { GoodsProvider } from '@/contexts/Goods';
 import { CartProvider } from '@/contexts/Cart';
+import { OrderProvider } from '@/contexts/Order';
 
 const basename = window.location.pathname.split('/v/')[0] + '/v/';
 
@@ -21,9 +22,11 @@ root.render(
         <AddressProvider>
           <GoodsProvider>
             <CartProvider>
-              <BrowserRouter basename={basename}>
-                <App />
-              </BrowserRouter>
+              <OrderProvider>
+                <BrowserRouter basename={basename}>
+                  <App />
+                </BrowserRouter>
+              </OrderProvider>
             </CartProvider>
           </GoodsProvider>
         </AddressProvider>

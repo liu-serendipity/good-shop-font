@@ -112,7 +112,7 @@ const OrderDetail = () => {
               return (
                 <List.Item
                   style={{ padding: '0' }}
-                  key={item.orderNo}
+                  key={item.goodsId}
                   prefix={
                     <Center w='0.9rem' p='0.1rem'>
                       <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />

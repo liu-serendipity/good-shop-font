@@ -13,7 +13,7 @@ const GoodsDetail = () => {
   const [search] = useSearchParams();
   const goodsId = search.get('goodsId' || '');
   const { fetchGoodsDetail, goodsDetail } = useGoodsContext();
-  const { fetchAddCart, cartList, fetchCart } = useCartContext();
+  const { fetchAddCart } = useCartContext();
   const navigate = useNavigate();
   const [swiperIndex, setSwiperIndex] = useState(0);
 
@@ -28,15 +28,13 @@ const GoodsDetail = () => {
 
   const handleAddCart = () => {
     fetchAddCart({ goodsCount: 1, goodsId: goodsId });
-    fetchCart();
     Toast.show('添加成功！');
   };
 
-  const jumpAddToCart = async () => {
+  const handleBuyNow = async () => {
     fetchAddCart({ goodsCount: 1, goodsId: goodsId });
-    fetchCart();
     await sleep(800);
-    navigate({ pathname: '/cart' });
+    navigate({ pathname: '/cart', search: `buyId=${goodsId}` });
   };
 
   return (
@@ -138,7 +136,7 @@ const GoodsDetail = () => {
             borderBottomRightRadius={'0.16rem'}
             borderTopRightRadius={'0.16rem'}
             c='#fff'
-            onClick={() => jumpAddToCart()}
+            onClick={() => handleBuyNow()}
           >
             立即购买
           </Box>

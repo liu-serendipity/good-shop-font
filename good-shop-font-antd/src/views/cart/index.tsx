@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Flex, Text, Center } from '@/components';
 import { NavBar, CheckList, Radio, Button, Toast, Stepper } from 'antd-mobile';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCartContext } from '@/hooks/useCartContex';
 import { CheckCircleFill, CheckCircleOutline } from 'antd-mobile-icons';
 import { motion, useDragControls } from 'framer-motion';
@@ -10,18 +10,27 @@ import { sleep } from '@/utils';
 const Cart = () => {
   const navigate = useNavigate();
   const controls = useDragControls();
+  const [search] = useSearchParams();
+  const buyId = search.get('buyId' || '') ? JSON.parse(search.get('buyId' || '') || '') : '';
   const { cartList, fetchCart, fetchDeteleCartItem, fetchModifyCart } = useCartContext(); // 购物车列表
   const [checkList, setCheckList] = useState<any>([]); // 勾选列表
   const [check, setCheck] = useState<boolean>(false); // 是否全选
 
   useEffect(() => {
-    cartList.length === 0 && fetchCart();
+    fetchCart();
   }, []);
 
-  // 勾选变化
-  const handleChange = (e: any) => {
-    setCheckList(e);
-  };
+  useEffect(() => {
+    if (cartList.length > 0) {
+      const list: any[] = [];
+      cartList.map((item: any) => {
+        if (item.goodsId === buyId) {
+          list.push(item.cartItemId.toString());
+        }
+      });
+      setCheckList(list);
+    }
+  }, [cartList]);
 
   //  监控是否全选
   useEffect(() => {
@@ -44,6 +53,11 @@ const Cart = () => {
       setCheck(false);
     }
   }, [checkList]);
+
+  // 勾选变化
+  const handleChange = (e: any) => {
+    setCheckList(e);
+  };
 
   // 提交
   const onSubmit = async () => {

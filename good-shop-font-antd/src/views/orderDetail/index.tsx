@@ -3,6 +3,7 @@ import { NavBar, List, Button, Toast, Popup } from 'antd-mobile';
 import { Box, Text, Center } from '@/components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useOrderContext } from '@/hooks/useOrderContext';
+import { sleep } from '@/utils';
 
 const OrderDetail = () => {
   const navigate = useNavigate();
@@ -17,14 +18,18 @@ const OrderDetail = () => {
 
   console.log(orderDetail, '-----');
 
-  const handleCancelOrder = (id: number) => {
+  const handleCancelOrder = async (id: number) => {
     fetchCancelOrder(id);
     Toast.show('成功取消！');
+    await sleep(800);
+    window.location.href = '/v/order';
   };
 
-  const handleConfirmOrder = (id: number) => {
+  const handleConfirmOrder = async (id: number) => {
     fetchConfirmOrder(id);
     Toast.show('成功确认！');
+    await sleep(800);
+    window.location.href = '/v/order';
   };
 
   const onPay = async (type: number) => {
@@ -33,6 +38,8 @@ const OrderDetail = () => {
     fetchPayOrder(params);
     Toast.show('支付成功！');
     setVisible(false);
+    await sleep(800);
+    window.location.href = '/v/order';
   };
 
   return (

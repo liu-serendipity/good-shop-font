@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavBar, Button, List, Popup, Toast } from 'antd-mobile';
 import { Box, Flex, Text, Center } from '@/components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useRoutes } from 'react-router-dom';
 import { useCartContext } from '@/hooks/useCartContex';
 import { useAddressContext } from '@/hooks/useAddressContex';
 import { useOrderContext } from '@/hooks/useOrderContext';
@@ -10,35 +10,58 @@ import { sleep } from '@/utils';
 const Pay = () => {
   const navigate = useNavigate();
   const [search] = useSearchParams();
-  const cartItemIds = search.get('payItems' || '') || '[]';
+  const [cartItemIds, setCartItemIds] = useState([]);
+  const [addressId, setAddressId] = useState(-1);
   const [total, setTotal] = useState(0);
   const [visible, setVisible] = useState(false);
   const { fetchCartItemsByIds, payList } = useCartContext();
-  const { fetchDefaultAddress, defaultAddress } = useAddressContext();
+  const { defaultAddress, addressDetail, fetchUserAddressDetail } = useAddressContext();
   const { fetchCreateOrder, fetchPayOrder, orderNo } = useOrderContext();
-  const [ids, setIds] = useState(
-    cartItemIds ? JSON.parse(cartItemIds) : JSON.parse(localStorage.getItem('cartItemIds') || '[]'),
-  );
 
   useEffect(() => {
-    localStorage.setItem('cartItemIds', JSON.stringify(ids));
-    fetchCartItemsByIds({ cartItemIds: ids });
-    fetchDefaultAddress();
-  }, [cartItemIds]);
+    const cIds =
+      JSON.parse(search.get('payItems' || '') || '[]').length > 0
+        ? JSON.parse(search.get('payItems' || '') || '[]')
+        : JSON.parse(localStorage.getItem('cartItemIds') || '[]');
+    const aId = JSON.parse(search.get('addressId' || '') || '-1');
+    setCartItemIds(cIds);
+    setAddressId(aId);
+  }, []);
+
+  useEffect(() => {
+    addressId !== -1 && fetchUserAddressDetail(addressId);
+  }, [addressId]);
 
   useEffect(() => {
     onComputed();
   }, [payList]);
 
-  const onCreate = () => {
-    const params = {
-      addressId: defaultAddress.addressId,
-      cartItemIds: ids,
-    };
+  useEffect(() => {
+    if (!defaultAddress.addressId) {
+      navigate({ pathname: '/address', search: `from=pay` });
+    }
+  }, [defaultAddress]);
 
-    fetchCreateOrder(params);
-    setVisible(true);
-    window.localStorage.setItem('cartItemIds', '');
+  useEffect(() => {
+    if (cartItemIds.length > 0) {
+      localStorage.setItem('cartItemIds', JSON.stringify(cartItemIds));
+      fetchCartItemsByIds({ cartItemIds: cartItemIds });
+    }
+  }, [cartItemIds]);
+
+  const onCreate = () => {
+    if (cartItemIds.length > 0) {
+      const params = {
+        addressId: addressDetail.addressId ? addressDetail.addressId : defaultAddress.addressId,
+        cartItemIds: cartItemIds,
+      };
+
+      fetchCreateOrder(params);
+      setVisible(true);
+      window.localStorage.setItem('cartItemIds', '');
+    } else {
+      Toast.show('未知错误');
+    }
   };
 
   const onPay = async (type: number) => {
@@ -59,6 +82,10 @@ const Pay = () => {
     setTotal(sum);
   };
 
+  const onModifyAddress = () => {
+    navigate({ pathname: '/address', search: `from=pay` });
+  };
+
   return (
     <div className='pay'>
       <Box pos={'fixed'} w='100%' bg='#fff' borderBottom={'1px solid #ebedf0'}>
@@ -67,11 +94,16 @@ const Pay = () => {
       <Box pt='0.45rem' pb='0.6rem' w='100%'>
         <List header='确认收货人信息：'>
           <List.Item
-            description={`${defaultAddress.provinceName} ${defaultAddress.cityName} ${defaultAddress.regionName} ${defaultAddress.detailAddress}`}
+            description={`${addressDetail.addressId ? addressDetail.provinceName : defaultAddress.provinceName} ${
+              addressDetail.addressId ? addressDetail.cityName : defaultAddress.cityName
+            } ${addressDetail.addressId ? addressDetail.regionName : defaultAddress.regionName} ${
+              addressDetail.addressId ? addressDetail.detailAddress : defaultAddress.detailAddress
+            }`}
             clickable
-            onClick={() => navigate('/address')}
+            onClick={() => onModifyAddress()}
           >
-            {defaultAddress.userName} {defaultAddress.userPhone}
+            {addressDetail.addressId ? addressDetail.userName : defaultAddress.userName}{' '}
+            {addressDetail.addressId ? addressDetail.userPhone : defaultAddress.userPhone}
           </List.Item>
         </List>
         <List header='购买商品列表：'>

@@ -8,8 +8,14 @@ import { tdist } from '@/utils/address';
 import { sleep, handleIsEmpty } from '@/utils';
 
 const AddressDetail = () => {
-  const { addressDetail, fetchUserAddressDetail, fetchEditUserAddress, fetchAddAddress, fetchDeleteAddress } =
-    useAddressContext();
+  const {
+    addressDetail,
+    fetchUserAddressDetail,
+    fetchEditUserAddress,
+    fetchAddAddress,
+    fetchDeleteAddress,
+    addressList,
+  } = useAddressContext();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const addressId = search.get('addressId' || '');
@@ -118,7 +124,7 @@ const AddressDetail = () => {
     addressDetail && (
       <Box w='100%' h='100vh' bg={'#fff'} pos='absolute' t='0' zIndex={90}>
         <Box pos={'fixed'} w='100%' bg='#fff'>
-          <NavBar onBack={() => navigate('/address')}>编辑地址</NavBar>
+          <NavBar onBack={() => navigate(-1)}>编辑地址</NavBar>
         </Box>
         <Box pt='0.45rem' w='100%'>
           <Form
@@ -214,7 +220,7 @@ const AddressDetail = () => {
             style={{ '--height': '3rem' }}
             options={options}
             value={location}
-            onChange={(val: any, extend) => {
+            onChange={(val: any) => {
               setLocation(val);
             }}
           />

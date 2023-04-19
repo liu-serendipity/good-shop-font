@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   getAddressList,
   editAddress,
@@ -44,6 +44,10 @@ export const AddressProvider = ({ children }) => {
       setDefaultAddress(res);
     });
   };
+
+  useEffect(() => {
+    fetchDefaultAddress();
+  }, []);
 
   const value = useMemo(() => {
     return {

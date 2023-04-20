@@ -13,6 +13,7 @@ import { Box, Text, Flex } from '@/components';
 import { useUserContext } from '@/hooks/useUserContext';
 
 import main from './imgs/main.jpg';
+import userAv from './imgs/userAv.jpeg';
 
 const About = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const About = () => {
           mb='0.1rem'
           align='center'
         >
-          <Avatar src={''} style={{ '--size': '0.64rem' }} />
+          <Avatar src={userAv} style={{ '--size': '0.64rem' }} />
           <Box p='0.1rem'>
             <Text>昵称：{userInfo?.nickName}</Text>
             <br />

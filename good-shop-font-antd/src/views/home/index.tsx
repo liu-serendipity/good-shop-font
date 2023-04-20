@@ -24,13 +24,13 @@ const Home = () => {
             </Box>
           }
           right={
-            <Flex onClick={() => navigate('/about')} justify={'flex-end'}>
+            <Flex onClick={() => navigate('/setting')} justify={'flex-end'}>
               <UserOutline fontSize={'0.24rem'} />
             </Flex>
           }
           backArrow={false}
         >
-          <Box w='100%'>
+          <Box w='100%' onClick={() => navigate({ pathname: '/productList', search: 'from=home' })}>
             <Flex bg='rgba(255, 255, 255, 0.7)' align={'center'} justify={'center'} br='0.08rem'>
               <Text fw='bold' c='#ae1b1bcc'>
                 良品铺子

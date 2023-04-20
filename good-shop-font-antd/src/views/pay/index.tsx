@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavBar, Button, List, Popup, Toast } from 'antd-mobile';
 import { Box, Flex, Text, Center } from '@/components';
-import { useNavigate, useSearchParams, useRoutes } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCartContext } from '@/hooks/useCartContex';
 import { useAddressContext } from '@/hooks/useAddressContex';
 import { useOrderContext } from '@/hooks/useOrderContext';

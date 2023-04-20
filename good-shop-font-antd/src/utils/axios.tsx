@@ -23,6 +23,7 @@ axios.interceptors.response.use((res) => {
       Toast.show(res.data.message);
     }
     if (window.location.pathname !== '/v/login' && res.data.resultCode == 416) {
+      localStorage.removeItem('token');
       window.location.replace('/v/login');
     }
     if (res.data.data && window.location.pathname.split('/v')[1] === '/login') {

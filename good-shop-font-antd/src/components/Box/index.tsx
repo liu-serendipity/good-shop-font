@@ -33,6 +33,10 @@ interface Props {
   borderTopRightRadius?: any;
   borderBottomRightRadius?: any;
   borderTop?: any;
+  fz?: any;
+  ws?: any;
+  of?: any;
+  tof?: any;
 }
 
 export const Box = styled.div((props: Props) => ({
@@ -67,4 +71,8 @@ export const Box = styled.div((props: Props) => ({
   borderTopRightRadius: props.borderTopRightRadius,
   borderBottomRightRadius: props.borderBottomRightRadius,
   borderTop: props.borderTop,
+  fontSize: props.fz,
+  whiteSpace: props.ws,
+  overflow: props.of,
+  textOverflow: props.tof,
 }));

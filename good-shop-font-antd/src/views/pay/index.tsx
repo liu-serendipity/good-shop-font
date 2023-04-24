@@ -115,7 +115,7 @@ const Pay = () => {
                 extra={<Box>x{item.goodsCount}</Box>}
                 prefix={
                   <Center w='0.6rem'>
-                    <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                    <img src={item.goodsCoverImg} />
                   </Center>
                 }
                 description={<Box c='red'>¥ {item.sellingPrice}</Box>}

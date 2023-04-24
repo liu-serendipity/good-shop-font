@@ -1,6 +1,6 @@
 import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { NavBar, SearchBar, Toast, CapsuleTabs, InfiniteScroll, List } from 'antd-mobile';
-import { Box, Center, Text } from '@/components';
+import { Box, Center } from '@/components';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ShopbagOutline } from 'antd-mobile-icons';
 import { SearchBarRef } from 'antd-mobile/es/components/search-bar';
@@ -26,7 +26,7 @@ const ProductList = () => {
   const navigate = useNavigate();
   const searchRef = useRef<SearchBarRef>(null);
   const [search] = useSearchParams();
-  const { fetchSearch, searchList, searchData } = useGoodsContext();
+  const { fetchSearch, searchList, searchData, setSearchList, setSearchData } = useGoodsContext();
   const from = search.get('from' || '');
   const categoryId = search.get('categoryId' || '');
   const [activeTab, setActiveTab] = useState(
@@ -83,6 +83,14 @@ const ProductList = () => {
     localStorage.removeItem('activeTab');
     localStorage.removeItem('searchKey');
     navigate(-1);
+    setSearchList([]);
+    setSearchData({});
+  };
+
+  const jumpToGoodsDetail = (id: string) => {
+    navigate({ pathname: '/goodsDetail', search: `goodsId=${id}` });
+    setSearchList([]);
+    setSearchData({});
   };
 
   const rowRenderer = ({ index, key, style }: { index: number; key: string; style: CSSProperties }) => {
@@ -93,10 +101,10 @@ const ProductList = () => {
       <List.Item
         key={key}
         style={style}
-        onClick={() => navigate({ pathname: '/goodsDetail', search: `goodsId=${item.goodsId}` })}
+        onClick={() => jumpToGoodsDetail(item.goodsId)}
         prefix={
           <Center w='1rem' p='0.06rem'>
-            <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+            <img src={item.goodsCoverImg} />
           </Center>
         }
         description={

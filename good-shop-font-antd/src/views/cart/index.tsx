@@ -112,7 +112,7 @@ const Cart = () => {
                       <CheckList.Item value={`${item.cartItemId}`}>
                         <Flex align={'center'}>
                           <Box w='0.8rem'>
-                            <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                            <img src={item.goodsCoverImg} />
                           </Box>
                           <Box w='2rem' pl='0.2rem'>
                             <Text fz='0.12rem'>{item.goodsName}</Text>

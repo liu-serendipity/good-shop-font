@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { getGoodsDetail, getCategory, search } from '@/api/goods';
 
 export const GoodsContext = React.createContext();
@@ -29,6 +29,10 @@ export const GoodsProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    fetchCategory();
+  }, []);
+
   const value = useMemo(() => {
     return {
       goodsDetail,
@@ -38,8 +42,20 @@ export const GoodsProvider = ({ children }) => {
       fetchGoodsDetail,
       fetchCategory,
       fetchSearch,
+      setSearchList,
+      setSearchData,
     };
-  }, [goodsDetail, category, searchList, searchData, fetchSearch, fetchCategory, fetchGoodsDetail]);
+  }, [
+    goodsDetail,
+    category,
+    searchList,
+    searchData,
+    setSearchData,
+    setSearchList,
+    fetchSearch,
+    fetchCategory,
+    fetchGoodsDetail,
+  ]);
 
   return <GoodsContext.Provider value={value}>{children}</GoodsContext.Provider>;
 };

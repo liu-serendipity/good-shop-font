@@ -6,13 +6,9 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import { ShopbagOutline, SearchOutline } from 'antd-mobile-icons';
 
 const Shop = () => {
-  const { category, fetchCategory } = useGoodsContext();
+  const { category } = useGoodsContext();
   const navigate = useNavigate();
   const [activeKey, setActiveKey] = useState('');
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
 
   useEffect(() => {
     if (category.length > 0) {

@@ -9,7 +9,7 @@ import {
   LocationOutline,
   ExclamationCircleOutline,
 } from 'antd-mobile-icons';
-import { Box, Text, Flex } from '@/components';
+import { Box, Text, Flex, Center } from '@/components';
 import { useUserContext } from '@/hooks/useUserContext';
 
 import main from './imgs/main.jpg';
@@ -19,7 +19,7 @@ const About = () => {
   const navigate = useNavigate();
   const { userInfo } = useUserContext();
 
-  const jump = async (val: any) => {
+  const jump = async (val: string) => {
     Toast.show('加载中');
     await sleep(800);
     navigate(val);
@@ -34,8 +34,8 @@ const About = () => {
       </Box>
       <Box pt='0.45rem' w='100%'>
         <Flex
-          bg='linear-gradient(90deg, #1baeae, #51c7c7)'
-          boxShadow='0 0.05333rem 0.13333rem #269090'
+          bg='linear-gradient(90deg, #e6450f91, #ec0b0bcf)'
+          boxShadow='0 0.05333rem 0.13333rem #ed0a0a9c'
           br='0.16rem'
           p='0.2rem'
           w='3rem'
@@ -70,9 +70,11 @@ const About = () => {
           </List.Item>
         </List>
       </Box>
-      <Box mt='0.2rem'>
-        <img src={main} />
-      </Box>
+      <Center mt='0.2rem'>
+        <Box w='3.4rem'>
+          <img src={main} />
+        </Box>
+      </Center>
     </div>
   );
 };

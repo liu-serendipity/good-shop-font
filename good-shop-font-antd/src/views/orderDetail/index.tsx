@@ -16,8 +16,6 @@ const OrderDetail = () => {
     orderId && fetchOrderDetail(orderId);
   }, [orderId]);
 
-  console.log(orderDetail, '-----');
-
   const handleCancelOrder = async (id: number) => {
     fetchCancelOrder(id);
     Toast.show('成功取消！');
@@ -122,7 +120,7 @@ const OrderDetail = () => {
                   key={item.goodsId}
                   prefix={
                     <Center w='0.9rem' p='0.1rem'>
-                      <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                      <img src={item.goodsCoverImg} />
                     </Center>
                   }
                   extra={`x${item.goodsCount}`}

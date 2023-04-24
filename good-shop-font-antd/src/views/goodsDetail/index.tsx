@@ -43,7 +43,7 @@ const GoodsDetail = () => {
         <NavBar onBack={() => navigate(-1)}>商品详情页</NavBar>
       </Box>
       <Box pt='0.45rem' w='100%' pb='0.54rem'>
-        <Swiper
+        {/* <Swiper
           slidesPerView={1}
           className='goods_detail_swiper'
           centeredSlides={true}
@@ -54,14 +54,17 @@ const GoodsDetail = () => {
         >
           {goodsDetail.goodsCarouselList?.map((item: any) => {
             return (
-              <SwiperSlide key={item}>
+              <SwiperSlide key={item.goodsCoverImg}>
                 <Box w='100%'>
-                  <img src={'http://backend-api-01.newbee.ltd' + item} />
+                  <img src={item.goodsCoverImg} />
                 </Box>
               </SwiperSlide>
             );
           })}
-        </Swiper>
+        </Swiper> */}
+        <Box w='100%'>
+          <img src={goodsDetail.goodsCoverImg} />
+        </Box>
         <Box p='0rem 0.3rem'>
           <Box>
             <Text c='#f63515' fw='bold' fz='0.2rem'>

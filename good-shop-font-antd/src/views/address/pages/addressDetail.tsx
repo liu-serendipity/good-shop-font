@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar, Form, Input, Button, CascaderView, Toast, Popup } from 'antd-mobile';
 import { Box } from '@/components';
 import { useNavigate } from 'react-router-dom';
@@ -8,14 +8,8 @@ import { tdist } from '@/utils/address';
 import { sleep, handleIsEmpty } from '@/utils';
 
 const AddressDetail = () => {
-  const {
-    addressDetail,
-    fetchUserAddressDetail,
-    fetchEditUserAddress,
-    fetchAddAddress,
-    fetchDeleteAddress,
-    addressList,
-  } = useAddressContext();
+  const { addressDetail, fetchUserAddressDetail, fetchEditUserAddress, fetchAddAddress, fetchDeleteAddress } =
+    useAddressContext();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const addressId = search.get('addressId' || '');

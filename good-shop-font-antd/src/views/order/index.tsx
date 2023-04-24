@@ -81,7 +81,7 @@ const Order = () => {
                                   key={item2.goodsId}
                                   prefix={
                                     <Center w='1rem'>
-                                      <img src={'http://backend-api-01.newbee.ltd' + item2.goodsCoverImg} />
+                                      <img src={item2.goodsCoverImg} />
                                     </Center>
                                   }
                                   extra={`x${item2.goodsCount}`}

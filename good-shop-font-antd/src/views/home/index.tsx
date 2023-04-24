@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Flex, Text } from '@/components';
-import { Toast, NavBar } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import { UnorderedListOutline, UserOutline } from 'antd-mobile-icons';
 import { useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
-import { useHomeContext } from '@/hooks/useHomeContex';
 import 'swiper/css/pagination';
+import { useHomeContext } from '@/hooks/useHomeContex';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Home = () => {
           </Box>
         </NavBar>
       </Box>
-      <Box w='100%'>
+      <Box w='100%' pt='0.45rem'>
         <Swiper
           slidesPerView={1}
           className='home_banner'
@@ -87,9 +87,11 @@ const Home = () => {
                   onClick={() => navigate({ pathname: '/goodsDetail', search: `goodsId=${item.goodsId}` })}
                 >
                   <Box>
-                    <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                    <img src={item.goodsCoverImg} />
                   </Box>
                   <Box ta='center' w='100%'>
+                    <Text>{item.goodsName}</Text>
+                    <br />
                     <Text>{item.goodsIntro}</Text>
                     <br />
                     <Text c='#ae1b1bcc'>价格：{item.sellingPrice}</Text>
@@ -117,9 +119,11 @@ const Home = () => {
                   onClick={() => navigate({ pathname: '/goodsDetail', search: `goodsId=${item.goodsId}` })}
                 >
                   <Box>
-                    <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                    <img src={item.goodsCoverImg} />
                   </Box>
                   <Box ta='center' w='100%'>
+                    <Text>{item.goodsName}</Text>
+                    <br />
                     <Text>{item.goodsIntro}</Text>
                     <br />
                     <Text c='#ae1b1bcc'>价格：{item.sellingPrice}</Text>
@@ -147,9 +151,11 @@ const Home = () => {
                   onClick={() => navigate({ pathname: '/goodsDetail', search: `goodsId=${item.goodsId}` })}
                 >
                   <Box>
-                    <img src={'http://backend-api-01.newbee.ltd' + item.goodsCoverImg} />
+                    <img src={item.goodsCoverImg} />
                   </Box>
                   <Box ta='center' w='100%'>
+                    <Text>{item.goodsName}</Text>
+                    <br />
                     <Text>{item.goodsIntro}</Text>
                     <br />
                     <Text c='#ae1b1bcc'>价格：{item.sellingPrice}</Text>

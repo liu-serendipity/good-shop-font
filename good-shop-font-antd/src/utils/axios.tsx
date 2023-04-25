@@ -5,7 +5,7 @@ import qs from 'qs';
 axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === 'production' ? '//localhost:28019/api/v1' : '//localhost:28019/api/v1';
+  process.env.NODE_ENV === 'production' ? '//localhost:28019/api/v2' : '//localhost:28019/api/v2';
 
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.headers['token'] = localStorage.getItem('token') || '';
